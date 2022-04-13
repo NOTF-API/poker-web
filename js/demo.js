@@ -12,6 +12,7 @@ setInterval(() => {
 
 
 updatePosition();
+updatePublicPosition();
 addCardsEventListener();
 
 
@@ -36,8 +37,19 @@ function updatePosition() {
     const playerCards = document.querySelector(".player-self").querySelector(".cards").children
     for (let i = 0; i < playerCards.length; i++) {
         const item = playerCards[i]
-        let xoffset = i * 2 -playerCards.length/2;
+        let xoffset = i * 2 - (playerCards.length/2+1);
         let yoffset = item.classList.contains("selected") ? 1 : 0
+        item.style.transform = `translate(${xoffset}rem,${yoffset}rem)`
+    }
+}
+
+// 用于把公共堆叠排放
+function updatePublicPosition() {
+    const playerCards = document.querySelector(".public").querySelector(".cards").children
+    for (let i = 0; i < playerCards.length; i++) {
+        const item = playerCards[i]
+        let xoffset = i * 2 - (playerCards.length/2+1);
+        let yoffset = 0
         item.style.transform = `translate(${xoffset}rem,${yoffset}rem)`
     }
 }

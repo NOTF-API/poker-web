@@ -9,6 +9,12 @@
     overflow: hidden;
 }
 
+.wrapper>.main-bar{
+    width: 100%;
+    height: 4rem;
+    background-color: rgba(255, 255, 255, 0.493);
+}
+
 
 /* players */
 .player-l,.player-r,.player-self{
@@ -17,20 +23,21 @@
 }
 
 .player-l,.player-r{
-    width: 15rem;
+    width: 20rem;
     height: 33rem;
     position: absolute;
     top: 0;
     display: flex;
-    justify-content: center;
     align-items: center;
 }
 
 .player-l{
     left: 0;
+    justify-content: flex-start;
 }
 .player-r{
-    left: 65rem;
+    left: 60rem;
+    justify-content: flex-end;
 }
 
 .player-self{
@@ -106,50 +113,72 @@
 
 /* publics */
 .public{
-    width: 50rem;
+    width: 40rem;
     height: 35rem;
     background-color: var(--table-color);
     position: absolute;
-    top: 0;
+    top: 4rem;
     left: 50%;
     transform: translateX(-50%);
 }
 
 .public>.score{
-    width: 50rem;
+    width: 100%;
     height: 2rem;
     /* background-color: #1b7bea; */
 }
 
 .public>.out{
-    width: 50rem;
-    height: 23rem;
+    width: 100%;
+    height: 19rem;
     /* background-color: #0e3c70; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.public>.out>.cards{
+    width: var(--card-width);
+    height: var(--card-height);
+    position: relative;
+    border: 0.25rem solid rgba(255, 255, 255, 0.5);
+    border-radius: 0.5rem;
+    box-sizing: content-box;
+}
+
+.out .card:hover{
+    box-shadow: var(--card-shadow)!important;
+}
+
+.public>.out>.cards>.card{
+    position: absolute;
+    left: 0;
+    top: 0;
 }
 
 .public>.clock{
-    width: 50rem;
+    width: 100%;
     height: 5rem;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.public>.clock>.time{
+.clock>.time{
     box-sizing: content-box;
     width: 3rem;
     height: 3rem;
     color: white;
+    margin: 0 1rem;
     text-align: center;
     font-size: 1.8rem;
     line-height: 3rem;
-    border: .25rem solid white;
+    border: .125rem solid white;
     background-color: #074c6e;
     border-radius: 50%;
 }
 
 .public>.operation{
-    width: 50rem;
+    width: 100%;
     height: 3rem;
     display: flex;
     justify-content: center;
@@ -171,7 +200,7 @@
     cursor: pointer;
 }
 
-.public>.operation>button:last-child{
+.public>.operation>button.idea{
     background-color: #f99410;
 }
 
@@ -180,13 +209,43 @@
 }
 
 .public>.operation>.status{
-    position: absolute;
-    background-color: red;
-    border-radius: 50%;
+    width: 2.5rem;
+    height: 2.5rem;
+    line-height: 2.5rem;
+    margin: 0 2rem;
+    text-align: center;
+    font-size: 2rem;
+}
+
+.status{
     width: 1.5rem;
     height: 1.5rem;
     line-height: 1.5rem;
+    color: #fff;
+    border: .125rem solid white;
+    border-radius: .5rem;
+    position: relative;
+}
+
+.status.zhuang::after,.status.xian::after,.status.auto::after{
+    width: 100%;
+    height: 100%;
+    line-height: 100%;
     text-align: center;
-    color: white;
-    left: 12rem;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+}
+
+.status.zhuang::after{
+    content: "庄";
+}
+.status.xian::after{
+    content: "闲";
+}
+
+.status.auto::after{
+    content: "AUTO";
+    font-size:.5rem;
 }
