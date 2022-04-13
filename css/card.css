@@ -17,10 +17,15 @@
 	box-shadow: var(--card-hover-shadow-inner),var(--card-hover-shadow-outside);
 }
 
-.cards>.card{
+.stacked.cards>.card{
     position: absolute;
     left: 0;
     top: 0;
+}
+
+.cards{
+    display: flex;
+    justify-content: center;
 }
 
 .card.back,.card.count{

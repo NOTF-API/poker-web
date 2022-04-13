@@ -11,22 +11,53 @@
 
 .wrapper>.main-bar{
     width: 100%;
-    height: 4rem;
-    background-color: rgba(255, 255, 255, 0.493);
+    height: 3rem;
+    background-color: rgba(0, 0, 0, 0.3);
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
 }
 
+.main-bar>button.fullscreen{
+    justify-self: flex-end;
+    width: 2rem;
+    height: 2rem;
+    color: #FFF;
+    margin: .5rem;
+}
+
+.main-bar>button.fullscreen::after{
+    content: '▣';
+    font-size: 2rem;
+    line-height: 2rem;
+}
 
 /* players */
-.player-l,.player-r,.player-self{
+.player-l,.player-r,.player-self,.player-t{
     position: relative;
     overflow: hidden;
 }
 
+.player-t{
+    position: absolute;
+    width: 40rem;
+    height: 12rem;
+    top: 3rem; 
+    left: 20rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.player-t>.card{
+    margin-left:2rem;
+}
+
 .player-l,.player-r{
     width: 20rem;
-    height: 33rem;
+    height: 30rem;
     position: absolute;
-    top: 0;
+    top: 7rem;
     display: flex;
     align-items: center;
 }
@@ -38,6 +69,14 @@
 .player-r{
     left: 60rem;
     justify-content: flex-end;
+}
+
+.player-l>.card{
+    margin-right: 1rem;
+}
+
+.player-r>.card{
+    margin-left: 1rem;
 }
 
 .player-self{
@@ -60,6 +99,7 @@
 .player-self>.player-info{
     position: absolute;
     left: 1rem;
+    top: 0;
     width: 6rem;
     height: 8rem;
 }
@@ -67,7 +107,7 @@
 .player-info{
     margin: 0 1rem;
     width: 6rem;
-    height: 10rem;
+    position: relative;
 }
 
 .player-info>.avatar{
@@ -85,7 +125,7 @@
 }
 
 .player-info>.nickname{
-    margin-top: .5rem;
+    
 }
 
 .player-info>.info{
@@ -97,8 +137,8 @@
     border-radius: 1rem;
     border: 3px solid black;
     position: relative;
-    box-sizing: content-box;
     transform: translateX(-0.25rem);
+    margin-bottom: .25rem;
 }
 
 .player-info>.info::after{
@@ -108,18 +148,18 @@
     right:-1rem;
     top: 0;
     vertical-align: middle;
-    transform: translateY(-2px);
+    transform: translateY(-4px);
 }
 
 /* publics */
 .public{
     width: 40rem;
-    height: 35rem;
     background-color: var(--table-color);
     position: absolute;
-    top: 4rem;
+    top: 12rem;
     left: 50%;
     transform: translateX(-50%);
+    position: relative;
 }
 
 .public>.score{
@@ -130,19 +170,66 @@
 
 .public>.out{
     width: 100%;
-    height: 19rem;
+    height: 15rem;
     /* background-color: #0e3c70; */
     display: flex;
+    border: .5rem solid rgba(255, 255, 255, 0.3);
+    border-radius: 1rem;
     justify-content: center;
     align-items: center;
+    position: relative;
 }
+
+@keyframes pointer-breath {
+    0%{
+        opacity: 0 ;
+    }
+    50%{
+        opacity: 100%;
+    }
+    100%{
+       opacity: 0;
+    }
+}
+
+.public>.out>.pointer{
+    position: absolute;
+    font-size: 2rem;
+    animation: pointer-breath 1s ease-in-out infinite;
+}
+
+.public>.out>.pointer::after{
+    content: "▶";
+    color: rgb(35, 252, 78);
+}
+
+.left.pointer{
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%) rotateZ(180deg);
+}
+.top.pointer{
+    left: 50%;
+    top: 0;
+    transform: translateX(-50%) rotateZ(-90deg);
+}
+
+.right.pointer{
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.bottom.pointer{
+    left: 50%;
+    bottom: 0;
+    transform: translateX(-50%) rotateZ(90deg);
+}
+
 .public>.out>.cards{
     width: var(--card-width);
     height: var(--card-height);
     position: relative;
-    border: 0.25rem solid rgba(255, 255, 255, 0.5);
-    border-radius: 0.5rem;
-    box-sizing: content-box;
 }
 
 .out .card:hover{
@@ -155,24 +242,20 @@
     top: 0;
 }
 
-.public>.clock{
-    width: 100%;
-    height: 5rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.clock{
+    position: absolute;
+    left:4rem;
+    top: 4rem;
 }
 
 .clock>.time{
-    box-sizing: content-box;
-    width: 3rem;
-    height: 3rem;
+    width: 2rem;
+    height: 2rem;
     color: white;
-    margin: 0 1rem;
     text-align: center;
-    font-size: 1.8rem;
-    line-height: 3rem;
-    border: .125rem solid white;
+    font-size: 1rem;
+    font-weight: bold;
+    line-height: 2rem;
     background-color: #074c6e;
     border-radius: 50%;
 }
@@ -208,44 +291,51 @@
     box-shadow: 0 0 4px rgb(0, 0, 0,.5);
 }
 
-.public>.operation>.status{
-    width: 2.5rem;
-    height: 2.5rem;
-    line-height: 2.5rem;
-    margin: 0 2rem;
-    text-align: center;
-    font-size: 2rem;
-}
-
 .status{
+    float: left;
     width: 1.5rem;
     height: 1.5rem;
     line-height: 1.5rem;
     color: #fff;
-    border: .125rem solid white;
     border-radius: .5rem;
     position: relative;
+    margin-right: .25rem;
+}
+
+.status::after{
+    position: absolute;
+    left: 0;top: 0;
+    width: 1.5rem;
+    height: 1.5rem;
+    line-height: 1.5rem;
+    font-size: 1rem;
 }
 
 .status.zhuang::after,.status.xian::after,.status.auto::after{
-    width: 100%;
-    height: 100%;
-    line-height: 100%;
     text-align: center;
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%,-50%);
 }
 
 .status.zhuang::after{
     content: "庄";
+    color: rgb(255, 255, 255);
+    background-color: rgb(150, 22, 22);
+    border-radius: 50%;
 }
 .status.xian::after{
     content: "闲";
+    color: rgb(255, 255, 255);
+    background-color: rgb(48, 22, 150);
+    border-radius: 50%;
 }
 
 .status.auto::after{
-    content: "AUTO";
-    font-size:.5rem;
+    height: 1.5rem;
+    width: 2.5rem;
+    content: "托管";
+    background-color: #414141;
+    font-size: 1rem;
+    font-weight: bold;
+    border-radius: .5rem;
+    line-height: 1.5rem;
+    box-sizing:border-box;
 }

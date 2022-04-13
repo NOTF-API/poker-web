@@ -17,3 +17,22 @@ body{
     justify-content: center;
     align-items: center;
 }
+
+button{
+    border: none;
+    background: none;
+    outline: none;
+}
+
+a{
+    text-decoration: none;
+    color: #fff;
+}
+
+a:visited{
+    color: #fff;
+}
+
+a:active{
+    color: #000;
+}
