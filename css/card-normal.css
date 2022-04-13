@@ -1,0 +1,42 @@
+:root{
+    --card-width:5.7rem;
+    --card-height:8.8rem;
+}
+
+.normal.card{
+    width: var(--card-width);
+    height: var(--card-height);
+    font-size: 2rem;
+    text-indent: .25rem;
+    line-height: 2rem;
+    border-radius: .4rem;
+}
+
+.heart::before,.spade::before,.club::before,.diamond::before{
+    position: absolute;
+    top: 2rem;
+    left: 0;
+}
+
+.normal.red-joker,.normal.black-joker{
+    font-size: 1.2rem;
+    text-indent: .5rem;
+    line-height: 1.8rem;
+}
+
+.red-joker::before,.black-joker::before{
+    font-size: 2rem;
+    line-height: 2rem;
+}
+
+.normal.red-joker,.normal.black-joker{
+    writing-mode: vertical-lr;
+}
+
+.red-joker::before,.black-joker::before{
+    content: '🤡';
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+}
